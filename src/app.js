@@ -14,10 +14,7 @@ db.once("open", function(){
 })
 
 //rotas
-const index = require("./routes/index")
 const clientes = require("./routes/clientesRoute")
-
-//app.use(express.json());
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
@@ -31,7 +28,6 @@ app.use(function(req, res, next) {
 //Linha incluida no momento de incluir o POST para o MongoDB
 app.use(bodyParser.json());
 
-app.use("/", index)
 app.use("/clientes", clientes)
 
 module.exports = app

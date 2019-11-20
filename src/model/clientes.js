@@ -4,10 +4,10 @@ const ClientesSchema = new mongoose.Schema({
     nome: { type: String },
     email: { type: String },
     CPF: { type: Number },
-    dataNascimento: { type: Date },
+    dataNascimento: { type: Date }, // no Postman "mes/dia/ano"
     estadoCivil: { type: String },
     telefone: { type: Number },
-    comprou: { type: Boolean },
+    comprou: { type: Boolean }
 }, {
     versionKey: false
 })
