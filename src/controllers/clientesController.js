@@ -42,3 +42,16 @@ exports.getCPF = (req, res) => {
     res.status(200).send(cliente)
   })
 }
+
+
+exports.updateCliente = (req, res) => {
+  Clientes.update(
+    {cpf: req.params.cpf},
+    {$set: req.body},
+    {upsert: true},
+    function(err) {
+      if (err) return res.status(500).send({message: err});
+      res.status(204).send({message: "Atualizado com sucesso!"})
+    }
+  )
+}
