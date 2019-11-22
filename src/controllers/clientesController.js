@@ -43,6 +43,14 @@ exports.getCPF = (req, res) => {
   })
 }
 
+//exemplo busca por query
+//exports.get = (req, res) => {
+//  const filter = req.query
+// Clientes.find(filter, function (err, clientes)
+// if (err) res.status(500).send(err);
+//    res.status(200).send(clientes)
+//)}
+
 
 exports.updateCliente = (req, res) => {
   Clientes.update(
@@ -55,3 +63,22 @@ exports.updateCliente = (req, res) => {
     }
   )
 }
+
+
+exports.deleteCliente = (req, res) => { 
+  const idCliente = req.params.id;
+
+  Clientes.findById(idCliente, function (err, cliente) {
+    if (err) res.status(500).send(err);
+
+    if (!cliente) {
+    res.status(200).send({ mensage: "Cliente não localizado!"});
+  }
+
+  cliente.remove(function(err) { //semelhante ao save incluido no post
+    if (!err) {
+      res.status(204).send({message: "Cliente removido com sucesso!"})
+    }
+  })
+
+})}
