@@ -5,7 +5,7 @@ const bodyParser = require("body-parser")
 const app = express()
 
 //conexão com o MongoDB local
-mongoose.connect("mongodb://localhost:27017/reprograma", {useNewUrlParser:true});
+mongoose.connect("mongodb://localhost:27017/reprograma", {useNewUrlParser:true}); //link pode ser alterado pelo mongoDB na nuvem (link ..../test == ..../clientes)
 
 let db = mongoose.connection;
 db.on("error", console.log.bind(console, "connection error:")) //erro caso problema de conexão com mongo, mostrando no console
@@ -29,5 +29,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 
 app.use("/clientes", clientes)
+
+app.use(express.static("public")) //incluida linha para o API docs
 
 module.exports = app
